@@ -1,16 +1,22 @@
-import { Button, Page } from "@patternfly/react-core";
 import {
   PersonalInfo,
+  UserRepresentation,
   savePersonalInfo,
   useEnvironment,
 } from "@keycloak/keycloak-account-ui";
+import {
+  Button,
+  Page,
+  PageSection,
+  PageSectionVariants,
+} from "@patternfly/react-core";
+import style from "./App.module.css";
+
 import viteLogo from "/vite.svg";
-import "./i18n";
-import "./App.css";
 
 function App() {
   const context = useEnvironment();
-  const submit = async (data) => {
+  const submit = async (data: UserRepresentation) => {
     try {
       await savePersonalInfo(context, data);
     } catch (error) {
@@ -20,20 +26,22 @@ function App() {
 
   return (
     <Page>
-      <a href="https://vitejs.dev" target="_blank">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-      </a>
-      <Button
-        variant="primary"
-        onClick={() =>
-          submit({
-            firstName: "John Doe",
-            email: "john.doe@example.com",
-          })
-        }
-      >
-        Save
-      </Button>
+      <PageSection variant={PageSectionVariants.darker}>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className={style.logo} alt="Vite logo" />
+        </a>
+        <Button
+          variant="primary"
+          onClick={() =>
+            submit({
+              firstName: "John Doe",
+              email: "john.doe@example.com",
+            })
+          }
+        >
+          Save
+        </Button>
+      </PageSection>
       <PersonalInfo />
     </Page>
   );
