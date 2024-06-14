@@ -98,7 +98,7 @@
     </#if>
   </head>
   <body>
-    <div id="root">
+    <div id="app">
     <div class="keycloak__loading-container">
       <span class="loader" role="progressbar" aria-valuetext="Loading...">
       </span>

@@ -8,7 +8,7 @@ import { environment } from "./environment";
 import { i18n } from "./i18n";
 
 i18n.init().then(() => {
-  ReactDOM.createRoot(document.getElementById("root")!).render(
+  ReactDOM.createRoot(document.getElementById("app")!).render(
     <React.StrictMode>
       <KeycloakProvider environment={environment}>
         <App />
