@@ -10,6 +10,10 @@
     <name>My Account UI</name>
     <description>The user inferface to manage an account on the Keycloak server.</description>
 
+    <properties>
+        <node.version>v20.13.0</node.version>
+        <pnpm.version>9.1.0</pnpm.version>
+    </properties>
     <build>
         <resources>
             <resource>
@@ -25,28 +29,38 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.15.0</version>
                 <executions>
                     <execution>
-                        <id>build</id>
-                        <phase>package</phase>
+                        <goals>
+                            <goal>install-node-and-pnpm</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>pnpm-install</id>
                         <goals>
                             <goal>pnpm</goal>
                         </goals>
                         <configuration>
-                            <arguments>run build</arguments>
+                            <arguments>install --prefer-offline --frozen-lockfile --ignore-scripts</arguments>
+                            <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>pack</id>
-                        <phase>package</phase>
+                        <id>pnpm-build</id>
                         <goals>
                             <goal>pnpm</goal>
                         </goals>
                         <configuration>
-                            <arguments>pack --pack-destination=target</arguments>
+                            <arguments>build</arguments>
                         </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <nodeVersion>${node.version}</nodeVersion>
+                    <pnpmVersion>${pnpm.version}</pnpmVersion>
+                    <installDirectory>${maven.multiModuleProjectDirectory}</installDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
