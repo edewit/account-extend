@@ -1,4 +1,4 @@
-.logo {
+.logo img {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -8,3 +8,6 @@
   filter: drop-shadow(0 0 1em #646cff);
 }
 
+.headerLogo img {
+  height: 35px;
+}
